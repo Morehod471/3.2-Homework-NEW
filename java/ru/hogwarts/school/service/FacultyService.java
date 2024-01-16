@@ -15,6 +15,7 @@ public class FacultyService {
     private Long generatedFacultyId = 1L;
 
     public Faculty createFaculty(Faculty faculty) {
+        faculty.setId(generatedFacultyId);
         facultyMap.put(generatedFacultyId, faculty);
         generatedFacultyId++;
         return faculty;
@@ -25,7 +26,7 @@ public class FacultyService {
     }
 
     public Faculty updateFaculty(Long id, Faculty faculty) {
-        facultyMap.put(generatedFacultyId, faculty);
+        facultyMap.put(id, faculty);
         return faculty;
     }
 
