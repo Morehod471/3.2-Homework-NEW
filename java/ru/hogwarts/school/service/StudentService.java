@@ -40,4 +40,8 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
+    public Collection<Student> getAllStudents() {
+        return studentMap.values();
+    }
+
 }

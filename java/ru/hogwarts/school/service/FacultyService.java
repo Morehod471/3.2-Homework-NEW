@@ -40,5 +40,9 @@ public class FacultyService {
                 .collect(Collectors.toList());
     }
 
+    public Collection<Faculty> getAllFaculties() {
+        return facultyMap.values();
+    }
+
 
 }
