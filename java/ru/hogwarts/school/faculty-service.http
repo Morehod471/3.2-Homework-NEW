@@ -22,3 +22,9 @@ Content-Type: application/json
 
 ### Удаление карточки факультета
 DELETE http://localhost:8080/faculty/1
+
+### Вывести список факультетов
+GET http://localhost:8080/faculty
+
+### Поиск факультетов по цвету
+GET http://localhost:8080/faculty/findByColor?color=green

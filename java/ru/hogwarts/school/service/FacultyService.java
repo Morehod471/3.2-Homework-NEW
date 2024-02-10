@@ -1,47 +1,45 @@
 package ru.hogwarts.school.service;
 
 import org.springframework.stereotype.Service;
+import ru.hogwarts.school.exception.FacultyNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class FacultyService {
 
-    private final Map<Long, Faculty> facultyMap = new HashMap<>();
-    private Long generatedFacultyId = 1L;
+    private final FacultyRepository facultyRepository;
+
+    public FacultyService(FacultyRepository facultyRepository) {
+        this.facultyRepository = facultyRepository;
+    }
 
     public Faculty createFaculty(Faculty faculty) {
-        faculty.setId(generatedFacultyId);
-        facultyMap.put(generatedFacultyId, faculty);
-        generatedFacultyId++;
-        return faculty;
+        return facultyRepository.save(faculty);
     }
 
     public Faculty getFacultyById (Long id) {
-        return facultyMap.get(id);
+        return facultyRepository.findById(id)
+                .orElseThrow(() -> new FacultyNotFoundException("Факультет с id = %d не найден"));
     }
 
     public Faculty updateFaculty(Long id, Faculty faculty) {
-        facultyMap.put(id, faculty);
-        return faculty;
+        return facultyRepository.save(faculty);
     }
 
-    public Faculty deleteFaculty (Long id) {
-        return facultyMap.remove(id);
+    public void deleteFaculty (Long id) {
+        facultyRepository.deleteById(id);
     }
 
     public Collection<Faculty> findByColor(String color) {
-        return facultyMap.values().stream()
-                .filter(faculty -> faculty.getColor().equals(color))
-                .collect(Collectors.toList());
+        return facultyRepository.findByColor(color);
     }
 
     public Collection<Faculty> getAllFaculties() {
-        return facultyMap.values();
+        return facultyRepository.findAll();
     }
 
 

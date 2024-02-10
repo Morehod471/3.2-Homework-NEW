@@ -8,17 +8,23 @@ Content-Type: application/json
 }
 
 ### Поиск карточки студента по id
-GET http://localhost:8080/student/3
+GET http://localhost:8080/student/1
 
 ### Изменение карточки студента
 PUT http://localhost:8080/student
 Content-Type: application/json
 
 {
-  "id": 2,
+  "id": 1,
   "name": "John",
   "age": 16
 }
 
 ### Удаление карточки студента
 DELETE http://localhost:8080/student/2
+
+### Вывести список студентов
+GET http://localhost:8080/student
+
+### Поиск студентов по возрасту
+GET http://localhost:8080/student/findByAge?age=16
