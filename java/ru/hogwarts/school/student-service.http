@@ -1,0 +1,24 @@
+### Создание новой карточки студента
+POST http://localhost:8080/student
+Content-Type: application/json
+
+{
+  "name": "Harry",
+  "age": 15
+}
+
+### Поиск карточки студента по id
+GET http://localhost:8080/student/3
+
+### Изменение карточки студента
+PUT http://localhost:8080/student
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "John",
+  "age": 16
+}
+
+### Удаление карточки студента
+DELETE http://localhost:8080/student/2
